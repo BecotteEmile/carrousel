@@ -1,4 +1,5 @@
 .carrousel{
+    transform: scale(0);
     position: absolute;
     width: 50%;
     height: 50%;
@@ -6,6 +7,8 @@
     top: 25%;
     left: 25%;
     z-index: 1;
+    background-color: rgba(0, 0, 0, .5);
+    transition: transform .25s;
 }
 
 .carrousel__x{
@@ -16,8 +19,17 @@
     border: 1px solid black;
 }
 
+.carrousel__figure{
+    position: absolute;
+    // width: ;
+}
+
+.carrousel__img{
+
+}
+
 .carrousel--ouvrir{
-    background-color: rgba(0, 0, 0, .5);
+    transform: scale(1);
     display: block;
 }
 
