@@ -32,6 +32,10 @@
         creer_radio_carrousel(index);
         index += 1;
     }
+    for (let i = 0; i < 2; i++) {
+        creer_fleches_carrousel(i);
+        index = 0;
+    }
 
     /**
      * Créer l'image du carrousel à partir de la galerie
@@ -54,13 +58,59 @@
         carrousel__radio.name = "image";
         carrousel__radio.dataset.index = index;
         carrousel__form.appendChild(carrousel__radio);
+        carrousel__figure.children[0].classList.add('img__montree');
         
-        console.log(carrousel__radio);
         carrousel__radio.addEventListener("mousedown", function () {
-            console.log("oki");
-            carrousel__figure.children.style.opacity = 0;
-            carrousel__figure.children[index].style.opacity = 1;
+
+            for (let i = 0; i < carrousel__figure.children.length; i++) {
+                carrousel__figure.children[i].classList.remove('img__montree');
+                // carrousel__figure.children[i].style.opacity = 0;
+            }
+
+            // carrousel__figure.children[index].style.opacity = 1;
+            carrousel__figure.children[index].classList.add('img__montree');
+            console.log(index);
         })
+    }
+
+    function creer_fleches_carrousel(i) {
+        let carrousel__fleches = document.createElement("input");
+        carrousel__fleches.classList.add('carrousel__fleches');
+        if (i == 0) {
+            carrousel__fleches.classList.add('fleche__gauche');
+            carrousel__fleches.addEventListener("mousedown", function () {
+                index -= 1;
+                if (index < 0) {
+                    index = 5;
+                }
+                ChangerCarousel(index);
+            })
+            
+        } else {
+            carrousel__fleches.classList.add('fleche__droite');
+            carrousel__fleches.addEventListener("mousedown", function () {
+                index += 1;
+                if (index > 5) {
+                    index = 0;
+                }
+                ChangerCarousel(index);
+            })
+
+        }
+
+        carrousel__fleches.type = "button";
+        carrousel__form.appendChild(carrousel__fleches);
+
+
+        function ChangerCarousel(index) {
+            for (let i = 0; i < carrousel__figure.children.length; i++) {
+                carrousel__figure.children[i].classList.remove('img__montree');
+                // carrousel__figure.children[i].style.opacity = 0;
+            }
+            // console.log(index)
+            carrousel__figure.children[index].classList.add('img__montree');
+        }
+        
     }
 
     btn.addEventListener('mousedown', function () {

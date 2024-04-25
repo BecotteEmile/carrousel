@@ -28,23 +28,31 @@
 }
 
 .carrousel__figure{
-    position: absolute;
+    height: 100%;
     width: 100%;
 }
 
 .carrousel__img{
+    position: absolute;
     width: 100%;
     height: 100%;
     top: 0;
     left: 0;
     object-fit: cover;
-    opacity: 0;// rend les images invisibles
-    // display: none;
+    // opacity: 0;// rend les images invisibles
+    display: none;
+}
+
+.img__montree{
+    display: block;
 }
 
 .carrousel--ouvrir{
     transform: scale(1);
-    display: block;
+    // display: block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .bouton__ouvrir{
@@ -57,4 +65,26 @@
     width: 3rem;
     height: 3rem;
     z-index: 12;
+}
+
+.carrousel__fleches{
+    position: absolute;
+    width: 4rem;
+    height: 4rem;
+    background-image: linear-gradient(120deg, var(--couleur-bouton1), var(--couleur-bouton2));
+    transition: background-image 1s;
+
+    &:hover{
+        background-image: linear-gradient(120deg, var(--couleur-bouton1-hover), var(--couleur-bouton2-hover));
+    }
+}
+
+.fleche__gauche{
+    top: 50%;
+    left: 0;
+}
+
+.fleche__droite{
+    top: 50%;
+    right: 0;
 }
