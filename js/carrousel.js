@@ -51,12 +51,12 @@
     }
     
     
-    function creer_radio_carrousel(index) {
+    function creer_radio_carrousel(indexCarrousel) {
         let carrousel__radio = document.createElement("input");
         carrousel__radio.classList.add('carrousel__radio');
         carrousel__radio.type = "radio";
         carrousel__radio.name = "image";
-        carrousel__radio.dataset.index = index;
+        carrousel__radio.dataset.index = indexCarrousel;
         carrousel__form.appendChild(carrousel__radio);
         carrousel__figure.children[0].classList.add('img__montree');
         
@@ -64,12 +64,18 @@
 
             for (let i = 0; i < carrousel__figure.children.length; i++) {
                 carrousel__figure.children[i].classList.remove('img__montree');
+                carrousel__radio.checked = false;
+                // console.log(carrousel__radio);
+                // console.log(carrousel__radio.checked);
                 // carrousel__figure.children[i].style.opacity = 0;
             }
 
             // carrousel__figure.children[index].style.opacity = 1;
-            carrousel__figure.children[index].classList.add('img__montree');
-            console.log(index);
+            carrousel__figure.children[indexCarrousel].classList.add('img__montree');
+            index = carrousel__figure.children[indexCarrousel].dataset.index;
+            carrousel__radio.checked = true;
+            console.log(carrousel__radio);
+            console.log(carrousel__radio.checked);
         })
     }
 
@@ -83,35 +89,43 @@
                 if (index < 0) {
                     index = 5;
                 }
-                ChangerCarousel(index);
+                ChangerCarousel();
             })
             
         } else {
             carrousel__fleches.classList.add('fleche__droite');
             carrousel__fleches.addEventListener("mousedown", function () {
+                console.log(index);
                 index += 1;
+                console.log(index);
                 if (index > 5) {
                     index = 0;
                 }
-                ChangerCarousel(index);
+                ChangerCarousel();
             })
 
         }
 
         carrousel__fleches.type = "button";
         carrousel__form.appendChild(carrousel__fleches);
+        
+    }
 
+    function ChangerCarousel() {
+            let carrousel__radio = document.querySelectorAll(".carrousel__radio");
 
-        function ChangerCarousel(index) {
+            for (const elm of carrousel__radio) {
+                elm.checked = false;
+            }
             for (let i = 0; i < carrousel__figure.children.length; i++) {
                 carrousel__figure.children[i].classList.remove('img__montree');
                 // carrousel__figure.children[i].style.opacity = 0;
             }
-            // console.log(index)
+
+            carrousel__radio[index].checked = true;
             carrousel__figure.children[index].classList.add('img__montree');
-        }
-        
     }
+
 
     btn.addEventListener('mousedown', function () {
         carrousel.classList.add('carrousel--ouvrir');
