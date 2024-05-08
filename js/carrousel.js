@@ -72,18 +72,17 @@
 
             // carrousel__figure.children[index].style.opacity = 1;
             carrousel__figure.children[indexCarrousel].classList.add('img__montree');
-            index = carrousel__figure.children[indexCarrousel].dataset.index;
+            index = Number(carrousel__figure.children[indexCarrousel].dataset.index);
             carrousel__radio.checked = true;
-            console.log(carrousel__radio);
-            console.log(carrousel__radio.checked);
         })
     }
 
     function creer_fleches_carrousel(i) {
-        let carrousel__fleches = document.createElement("input");
+        let carrousel__fleches = document.createElement("button");
         carrousel__fleches.classList.add('carrousel__fleches');
         if (i == 0) {
             carrousel__fleches.classList.add('fleche__gauche');
+            carrousel__fleches.innerHTML = "&#8592";
             carrousel__fleches.addEventListener("mousedown", function () {
                 index -= 1;
                 if (index < 0) {
@@ -94,10 +93,9 @@
             
         } else {
             carrousel__fleches.classList.add('fleche__droite');
+            carrousel__fleches.innerHTML = "&#8594";
             carrousel__fleches.addEventListener("mousedown", function () {
-                console.log(index);
                 index += 1;
-                console.log(index);
                 if (index > 5) {
                     index = 0;
                 }

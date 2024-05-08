@@ -69,8 +69,9 @@
 
 .carrousel__fleches{
     position: absolute;
-    width: 4rem;
-    height: 4rem;
+    width: 5rem;
+    height: 5rem;
+    padding: 0rem;
     background-image: linear-gradient(120deg, var(--couleur-bouton1), var(--couleur-bouton2));
     transition: background-image 1s;
 
