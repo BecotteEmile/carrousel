@@ -54,11 +54,21 @@
   top: 0;
   left: 0;
   object-fit: cover;
+  opacity: 0;
   display: none;
+  transition: opacity 0.25s;
 }
 
 .img__montree {
   display: block;
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+
+.img__cachee {
+  display: block;
+  transition: opacity 0.25s;
+  opacity: 0;
 }
 
 .carrousel--ouvrir {

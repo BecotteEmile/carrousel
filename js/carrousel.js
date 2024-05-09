@@ -14,8 +14,9 @@
     let galerie = document.querySelector('.galerie');
     // console.log("galerie = " + galerie.tagName);
 
-
-
+    let intervaChangement;
+    let indexPasse;
+    let permissions = true;
 
     let carrousel__figure = document.querySelector('.carrousel__figure');
     // console.log("carrousel figure = " + carrousel__figure.tagName)
@@ -84,22 +85,29 @@
             carrousel__fleches.classList.add('fleche__gauche');
             carrousel__fleches.innerHTML = "&#8592";
             carrousel__fleches.addEventListener("mousedown", function () {
-                index -= 1;
-                if (index < 0) {
-                    index = 5;
+                if (permissions == true) {
+                    indexPasse = index;
+                    index -= 1;
+                    if (index < 0) {
+                        index = 5;
+                    }
+                    ChangerCarousel();
                 }
-                ChangerCarousel();
+                
             })
             
         } else {
             carrousel__fleches.classList.add('fleche__droite');
             carrousel__fleches.innerHTML = "&#8594";
             carrousel__fleches.addEventListener("mousedown", function () {
-                index += 1;
-                if (index > 5) {
-                    index = 0;
+                if (permissions == true) {
+                    indexPasse = index;
+                    index += 1;
+                    if (index > 5) {
+                        index = 0;
+                    }
+                    ChangerCarousel();
                 }
-                ChangerCarousel();
             })
 
         }
@@ -116,14 +124,31 @@
                 elm.checked = false;
             }
             for (let i = 0; i < carrousel__figure.children.length; i++) {
+                if (i == indexPasse) {
+                    carrousel__figure.children[i].classList.add('img__cachee');
+                    intervaChangement = setInterval(CacherImg, 250);
+                    permissions = false;
+                }
                 carrousel__figure.children[i].classList.remove('img__montree');
                 // carrousel__figure.children[i].style.opacity = 0;
             }
 
-            carrousel__radio[index].checked = true;
-            carrousel__figure.children[index].classList.add('img__montree');
+            
     }
 
+    function CacherImg() {
+        let carrousel__radio = document.querySelectorAll(".carrousel__radio");
+
+        carrousel__figure.children[indexPasse].classList.remove('img__cachee');
+        carrousel__radio[index].checked = true;
+        carrousel__figure.children[index].classList.add('img__montree');
+        clearInterval(intervaChangement);
+        intervaChangement = setInterval(RedonnerPermissions, 250);
+    }
+
+    function RedonnerPermissions(){
+        permissions = true;
+    }
 
     btn.addEventListener('mousedown', function () {
         carrousel.classList.add('carrousel--ouvrir');
