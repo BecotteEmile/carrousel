@@ -4,18 +4,17 @@
   position: fixed;
   width: 100%;
   height: 100%;
-  border: 10px solid red;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 12;
   background-color: rgba(0, 0, 0, 0.5);
 }
 @media screen and (min-width: 400px) {
   .carrousel {
-    width: 75%;
-    height: 75%;
-    top: 12.5%;
-    left: 12.5%;
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
   }
 }
 
@@ -25,15 +24,30 @@
   top: 0;
   padding: 5px 3px;
   border: 1px solid black;
+  z-index: 12;
+  width: 4rem;
+  height: 4rem;
+  margin: 0.4rem;
+}
+
+.fond__carrousel {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
   z-index: 11;
+  top: -10%;
 }
 
 .carrousel__figure {
   height: 100%;
   width: 100%;
+  z-index: 11;
+  border-radius: 10px;
 }
 
 .carrousel__img {
+  border-radius: 10px;
   position: absolute;
   width: 100%;
   height: 100%;
@@ -58,6 +72,14 @@
   width: 200px;
 }
 
+.carrousel__form {
+  width: 33%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  margin-bottom: 1rem;
+}
+
 .carrousel__radio {
   position: relative;
   width: 3rem;
@@ -67,22 +89,26 @@
 
 .carrousel__fleches {
   position: absolute;
-  width: 5rem;
-  height: 5rem;
+  width: 4rem;
+  height: 4rem;
   padding: 0rem;
   background-image: linear-gradient(120deg, var(--couleur-bouton1), var(--couleur-bouton2));
-  transition: background-image 1s;
+  font-weight: 900;
+  transition: background-image 1s, color 1s, transform 1s;
+  border-radius: 15px;
+  z-index: 12;
 }
+
 .carrousel__fleches:hover {
   background-image: linear-gradient(120deg, var(--couleur-bouton1-hover), var(--couleur-bouton2-hover));
 }
 
 .fleche__gauche {
   top: 50%;
-  left: 0;
+  left: 2%;
 }
 
 .fleche__droite {
   top: 50%;
-  right: 0;
+  right: 2%;
 }/*# sourceMappingURL=style.css.map */
