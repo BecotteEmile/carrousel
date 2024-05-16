@@ -7,7 +7,6 @@
   top: 0;
   left: 0;
   z-index: 12;
-  background-color: rgba(0, 0, 0, 0.5);
 }
 @media screen and (min-width: 400px) {
   .carrousel {
@@ -42,21 +41,25 @@
 .carrousel__figure {
   height: 100%;
   width: 100%;
+  display: flex;
   z-index: 11;
   border-radius: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
 }
 
 .carrousel__img {
   border-radius: 10px;
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  top: 0;
-  left: 0;
   object-fit: cover;
-  opacity: 0;
+  min-width: 10vw;
+  min-height: 10vw;
+  max-width: 70vw;
+  max-height: 70vh;
+  height: auto;
   display: none;
   transition: opacity 0.25s;
+  opacity: 0;
 }
 
 .img__montree {
@@ -88,7 +91,7 @@
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
-  margin-bottom: -9%;
+  margin-bottom: -5%;
   border-radius: 30px;
   background-color: var(--couleur-arriere-entete);
   border: 8px solid var(--couleur-arriere-accueil);
@@ -118,11 +121,11 @@
 }
 
 .fleche__gauche {
-  top: 50%;
+  top: 40%;
   left: 2%;
 }
 
 .fleche__droite {
-  top: 50%;
+  top: 40%;
   right: 2%;
 }/*# sourceMappingURL=style.css.map */
