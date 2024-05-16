@@ -162,10 +162,26 @@
         permissions = true;
     }
 
-    btn.addEventListener('mousedown', function () {
-        carrousel.classList.add('carrousel--ouvrir');
-        // console.log("oki")
-    })
+    // galerie__img.addEventListener('mousedown', function () {
+    //     carrousel.classList.add('carrousel--ouvrir');
+    //     // console.log("oki")
+    // })
+    for (let i = 0; i < galerie__img.length; i++) {
+        galerie__img[i].addEventListener('mousedown', function () {
+            let carrousel__radio = document.querySelectorAll(".carrousel__radio");
+            for (const elm of carrousel__radio) {
+                elm.checked = false;
+            }
+            carrousel__radio[i].checked = true;
+            for (let i = 0; i < carrousel__figure.children.length; i++) {
+                carrousel__figure.children[i].classList.remove('img__montree');
+            }
+            carrousel__figure.children[i].classList.add('img__montree');
+            index = i;
+            indexPasse = i;
+            carrousel.classList.add('carrousel--ouvrir');
+        })
+    }
 
     carrousel__x.addEventListener('mousedown', function () {
         carrousel.classList.remove('carrousel--ouvrir');
