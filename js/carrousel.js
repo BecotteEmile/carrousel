@@ -15,7 +15,7 @@
     // console.log("galerie = " + galerie.tagName);
 
     let intervaChangement;
-    let indexPasse;
+    let indexPasse = 0;
     let permissions = true;
 
     let carrousel__figure = document.querySelector('.carrousel__figure');
@@ -63,33 +63,37 @@
         
         carrousel__radio.addEventListener("mousedown", function () {
 
-            for (let i = 0; i < carrousel__figure.children.length; i++) {
-                carrousel__figure.children[i].classList.remove('img__montree');
-                carrousel__radio.checked = false;
-                // console.log(carrousel__radio);
-                // console.log(carrousel__radio.checked);
-                // carrousel__figure.children[i].style.opacity = 0;
-            }
+            // for (let i = 0; i < carrousel__figure.children.length; i++) {
+            //     carrousel__figure.children[i].classList.remove('img__montree');
+            //     carrousel__radio.checked = false;
+            //     // console.log(carrousel__radio);
+            //     // console.log(carrousel__radio.checked);
+            //     // carrousel__figure.children[i].style.opacity = 0;
+            // }
 
             // carrousel__figure.children[index].style.opacity = 1;
-            carrousel__figure.children[indexCarrousel].classList.add('img__montree');
+            // carrousel__figure.children[indexCarrousel].classList.add('img__montree');
+
             index = Number(carrousel__figure.children[indexCarrousel].dataset.index);
-            carrousel__radio.checked = true;
+            // carrousel__radio.checked = true;
+            ChangerCarousel();
         })
     }
 
     function creer_fleches_carrousel(i) {
+        let longueur = carrousel__figure.children.length;
+
         let carrousel__fleches = document.createElement("button");
         carrousel__fleches.classList.add('carrousel__fleches');
         if (i == 0) {
             carrousel__fleches.classList.add('fleche__gauche');
-            carrousel__fleches.innerHTML = "&#8592";
+            carrousel__fleches.innerHTML = "&#11207";
             carrousel__fleches.addEventListener("mousedown", function () {
                 if (permissions == true) {
                     indexPasse = index;
                     index -= 1;
                     if (index < 0) {
-                        index = 5;
+                        index = (longueur - 1);
                     }
                     ChangerCarousel();
                 }
@@ -98,12 +102,12 @@
             
         } else {
             carrousel__fleches.classList.add('fleche__droite');
-            carrousel__fleches.innerHTML = "&#8594";
+            carrousel__fleches.innerHTML = "&#11208";
             carrousel__fleches.addEventListener("mousedown", function () {
                 if (permissions == true) {
                     indexPasse = index;
                     index += 1;
-                    if (index > 5) {
+                    if (index > (longueur - 1)) {
                         index = 0;
                     }
                     ChangerCarousel();
@@ -126,11 +130,10 @@
             for (let i = 0; i < carrousel__figure.children.length; i++) {
                 if (i == indexPasse) {
                     carrousel__figure.children[i].classList.add('img__cachee');
-                    intervaChangement = setInterval(CacherImg, 250);
+                    intervaChangement = setInterval(CacherImg, 125);
                     permissions = false;
                 }
                 carrousel__figure.children[i].classList.remove('img__montree');
-                // carrousel__figure.children[i].style.opacity = 0;
             }
 
             
@@ -141,12 +144,21 @@
 
         carrousel__figure.children[indexPasse].classList.remove('img__cachee');
         carrousel__radio[index].checked = true;
+        carrousel__figure.children[index].classList.add('img__cachee');
+        clearInterval(intervaChangement);
+        intervaChangement = setInterval(RedonnerDisplayBlockImage, 125);
+    }
+    
+    function RedonnerDisplayBlockImage(){
         carrousel__figure.children[index].classList.add('img__montree');
         clearInterval(intervaChangement);
-        intervaChangement = setInterval(RedonnerPermissions, 250);
+        intervaChangement = setInterval(RedonnerPermissions, 125);
     }
-
-    function RedonnerPermissions(){
+    
+    function RedonnerPermissions() {
+        clearInterval(intervaChangement);
+        carrousel__figure.children[index].classList.remove('img__cachee');
+        indexPasse = index;
         permissions = true;
     }
 

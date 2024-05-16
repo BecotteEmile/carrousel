@@ -84,10 +84,14 @@
 
 .carrousel__form {
   width: 33%;
+  padding: 0.5rem 0.25rem;
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-around;
-  margin-bottom: 1rem;
+  margin-bottom: -9%;
+  border-radius: 30px;
+  background-color: var(--couleur-arriere-entete);
+  border: 8px solid var(--couleur-arriere-accueil);
 }
 
 .carrousel__radio {
