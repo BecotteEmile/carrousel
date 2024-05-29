@@ -24,22 +24,25 @@ function enqueue_style_script(){
                     $version_js,
                     true);
 }
-
+//Il faut que wp head soit ajouté juste avant la fin de la balise </head>
+//et que wp footer soit ajouté juste avant la fin de la balise </footer>
 add_action('wp_enqueue_scripts','enqueue_style_script');
 
 function genere_html() {  
 
         $html =  '
-        <button class="bouton_ouvrir">Ouvrir Carousel</button>
         <div class="carrousel">
-            <a href="" class="carrousel__x">X</a>
+            <div class="fond__carrousel"></div>
+            <button class="carrousel__x">X</button>
             <figure class="carrousel__figure"></figure>
             <form action="" class="carrousel__form"></form>
         </div>
         ';
         return $html;
     }
-    
+    // [carrousel] juste après la galerie dans votre article ou page
+    // Quand la fonction the content rencontrera [carrousel] c'est à ce moment
+    // que le carrousel sera initialisé
     add_shortcode( 'carrousel', 'genere_html' );
 ?>
     

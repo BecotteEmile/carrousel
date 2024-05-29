@@ -1,11 +1,131 @@
 .carrousel {
+  transform: scale(0);
+  transition: transform 0.25s;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 12;
+}
+@media screen and (min-width: 400px) {
+  .carrousel {
+    width: 80%;
+    height: 80%;
+    top: 10%;
+    left: 10%;
+  }
+}
+
+.carrousel__x {
   position: absolute;
-  width: 300px;
-  height: 300px;
-  border: 10px solid red;
-  background-color: black;
+  right: 0;
+  top: 0;
+  padding: 5px 3px;
+  border: 1px solid black;
+  z-index: 12;
+  width: 4rem;
+  height: 4rem;
+  margin: 0.4rem;
+}
+
+.fond__carrousel {
+  background-color: rgba(0, 0, 0, 0.5);
+  width: 100vw;
+  height: 100vh;
+  position: absolute;
+  z-index: 11;
+  top: -10%;
+}
+
+.carrousel__figure {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  z-index: 11;
+  border-radius: 10px;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.carrousel__img {
+  border-radius: 10px;
+  object-fit: cover;
+  min-width: 10vw;
+  min-height: 10vw;
+  max-width: 70vw;
+  max-height: 70vh;
+  height: auto;
+  display: none;
+  transition: opacity 0.25s;
+  opacity: 0;
+}
+
+.img__montree {
+  display: block;
+  opacity: 1;
+  transition: opacity 0.25s;
+}
+
+.img__cachee {
+  display: block;
+  transition: opacity 0.25s;
+  opacity: 0;
+}
+
+.carrousel--ouvrir {
+  transform: scale(1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .bouton__ouvrir {
   width: 200px;
+}
+
+.carrousel__form {
+  width: 33%;
+  padding: 0.5rem 0.25rem;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  margin-bottom: -5%;
+  border-radius: 30px;
+  background-color: var(--couleur-arriere-entete);
+  border: 8px solid var(--couleur-arriere-accueil);
+}
+
+.carrousel__radio {
+  position: relative;
+  width: 3rem;
+  height: 3rem;
+  z-index: 12;
+}
+
+.carrousel__fleches {
+  position: absolute;
+  width: 4rem;
+  height: 4rem;
+  padding: 0rem;
+  background-image: linear-gradient(120deg, var(--couleur-bouton1), var(--couleur-bouton2));
+  font-weight: 900;
+  transition: background-image 1s, color 1s, transform 1s;
+  border-radius: 15px;
+  z-index: 12;
+}
+
+.carrousel__fleches:hover {
+  background-image: linear-gradient(120deg, var(--couleur-bouton1-hover), var(--couleur-bouton2-hover));
+}
+
+.fleche__gauche {
+  top: 40%;
+  left: 2%;
+}
+
+.fleche__droite {
+  top: 40%;
+  right: 2%;
 }/*# sourceMappingURL=style.css.map */
